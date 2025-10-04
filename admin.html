@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Admin — Users & Rules</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="topbar">
+    <div class="logo">Expense Management</div>
+    <div class="actions">
+      <span id="dashboard-user"></span>
+      <a href="dashboard.html" class="btn small ghost">Dashboard</a>
+    </div>
+  </div>
+
+  <div class="container">
+    <main class="main">
+      <section class="card">
+        <h3>Users (demo)</h3>
+        <div id="users-list"></div>
+        <hr/>
+        <h4>Create Demo User</h4>
+        <label>Name <input id="admin-user-name" /></label>
+        <label>Email <input id="admin-user-email" /></label>
+        <label>Role
+          <select id="admin-user-role">
+            <option value="employee">Employee</option>
+            <option value="manager">Manager</option>
+            <option value="admin">Admin</option>
+          </select>
+        </label>
+        <button id="btn-create-user" class="btn">Create</button>
+      </section>
+
+      <section class="card">
+        <h3>Approval Rules (demo)</h3>
+        <div id="rules-list"></div>
+        <hr/>
+        <h4>Create Rule</h4>
+        <label>Rule Name <input id="rule-name" /></label>
+        <label>Type
+          <select id="rule-type">
+            <option value="percentage">Percentage</option>
+            <option value="specific">Specific Approver</option>
+            <option value="hybrid">Hybrid</option>
+          </select>
+        </label>
+        <label>Threshold (if percentage)
+          <input id="rule-threshold" type="number" value="60" />
+        </label>
+        <button id="btn-create-rule" class="btn">Create Rule</button>
+      </section>
+    </main>
+  </div>
+
+  <script src="scripts.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      if (!ensureAuth()) return;
+      renderDemoUsers();
+      renderDemoRules();
+      document.getElementById('btn-create-user').addEventListener('click', createDemoUser);
+      document.getElementById('btn-create-rule').addEventListener('click', createDemoRule);
+    });
+  </script>
+</body>
+</html>

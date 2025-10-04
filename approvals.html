@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Approvals</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="topbar">
+    <div class="logo">Expense Management</div>
+    <div class="actions">
+      <span id="dashboard-user"></span>
+      <a href="dashboard.html" class="btn small ghost">Dashboard</a>
+    </div>
+  </div>
+
+  <div class="container">
+    <aside class="sidebar">
+      <nav><ul>
+        <li><a href="dashboard.html">Dashboard</a></li>
+        <li><a href="expense_form.html">Create Expense</a></li>
+      </ul></nav>
+    </aside>
+
+    <main class="main">
+      <section class="card">
+        <h3>Pending Approvals</h3>
+        <table class="table" id="pending-table">
+          <thead><tr><th>Ref</th><th>Employee</th><th>Amount</th><th>Currency</th><th>Company Amt</th><th>Action</th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </section>
+    </main>
+  </div>
+
+  <script src="scripts.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      if (!ensureAuth()) return;
+      renderPendingApprovals();
+    });
+  </script>
+</body>
+</html>

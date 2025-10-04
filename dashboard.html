@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Expense Management — Dashboard</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="topbar">
+    <div class="logo">Expense Management</div>
+    <div class="actions">
+      <span id="dashboard-user"></span>
+      <button id="logout-btn" class="btn small ghost">Logout</button>
+    </div>
+  </div>
+
+  <div class="container">
+    <aside class="sidebar">
+      <nav>
+        <ul>
+          <li><a href="dashboard.html">Dashboard</a></li>
+          <li><a href="expense_form.html">Create Expense</a></li>
+          <li><a href="approvals.html">Approvals</a></li>
+          <li><a href="admin.html">Admin</a></li>
+        </ul>
+      </nav>
+    </aside>
+
+    <main class="main">
+      <h2>Welcome, <span id="user-greet"></span></h2>
+
+      <section class="card">
+        <h3>Your Recent Expenses</h3>
+        <table id="recent-expenses" class="table">
+          <thead><tr><th>Ref</th><th>Date</th><th>Amount</th><th>Currency</th><th>Company Amount</th><th>Status</th></tr></thead>
+          <tbody>
+            <!-- populated by JS -->
+          </tbody>
+        </table>
+      </section>
+
+      <section class="card">
+        <h3>Quick Actions</h3>
+        <div class="grid">
+          <a class="quick" href="expense_form.html">+ New Expense</a>
+          <a class="quick" href="approvals.html">Pending Approvals</a>
+          <a class="quick" href="admin.html">Manage Rules / Users</a>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <script src="scripts.js"></script>
+  <script>
+    // load user and recent expenses
+    document.addEventListener('DOMContentLoaded', async () => {
+      if (!ensureAuth()) return;
+      const user = getCurrentUser();
+      document.getElementById('user-greet').textContent = user.name;
+      document.getElementById('dashboard-user').textContent = user.email;
+      // demo: load expenses from localStorage
+      renderRecentExpenses();
+      document.getElementById('logout-btn').addEventListener('click', logout);
+    });
+  </script>
+</body>
+</html>

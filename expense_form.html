@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Create Expense</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="topbar">
+    <div class="logo">Expense Management</div>
+    <div class="actions">
+      <span id="dashboard-user"></span>
+      <a href="dashboard.html" class="btn small ghost">Dashboard</a>
+    </div>
+  </div>
+
+  <div class="container two-column">
+    <main class="main">
+      <section class="card">
+        <h3>Create Expense</h3>
+        <form id="expense-form">
+          <label>Expense Category
+            <select id="expense-category">
+              <option value="travel">Travel</option>
+              <option value="meals">Meals</option>
+              <option value="office">Office</option>
+              <option value="other">Other</option>
+            </select>
+          </label>
+
+          <label>Date
+            <input type="date" id="expense-date" required />
+          </label>
+
+          <label>Amount
+            <input type="number" id="expense-amount" step="0.01" required />
+          </label>
+
+          <label>Currency
+            <input type="text" id="expense-currency" maxlength="3" placeholder="e.g. USD" required />
+          </label>
+
+          <label>Description
+            <textarea id="expense-desc"></textarea>
+          </label>
+
+          <label>Receipt (image)
+            <input type="file" id="expense-receipt" accept="image/*" />
+          </label>
+
+          <div class="row">
+            <button type="submit" class="btn">Submit</button>
+            <button id="btn-calc" type="button" class="btn ghost">Convert to Company Currency</button>
+          </div>
+          <div id="convert-result" class="muted small"></div>
+        </form>
+      </section>
+    </main>
+
+    <aside class="sidebar">
+      <section class="card">
+        <h4>Company</h4>
+        <div id="company-info">Loading company info...</div>
+      </section>
+
+      <section class="card">
+        <h4>OCR (placeholder)</h4>
+        <p class="small">OCR feature not implemented in frontend demo. When integrated, this button will auto-extract amount, date and vendor from the uploaded receipt.</p>
+        <button id="mock-ocr" class="btn small">Run OCR (mock)</button>
+      </section>
+    </aside>
+  </div>
+
+  <script src="scripts.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      if (!ensureAuth()) return;
+      loadCompanyInfo();
+      document.getElementById('expense-form').addEventListener('submit', onExpenseSubmit);
+      document.getElementById('btn-calc').addEventListener('click', convertToCompanyCurrency);
+      document.getElementById('mock-ocr').addEventListener('click', () => {
+        // mock fills example values
+        document.getElementById('expense-amount').value = "123.45";
+        document.getElementById('expense-currency').value = "EUR";
+        document.getElementById('expense-desc').value = "Mock: Restaurant ABC";
+        alert('Mock OCR filled values (demo). Replace with server OCR integration.');
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Expense Management — Login / Signup</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="auth-root">
+    <div class="card auth-card">
+      <h1>Expense Management</h1>
+
+      <div id="auth-forms">
+        <!-- LOGIN -->
+        <form id="login-form" class="form">
+          <h2>Login</h2>
+          <label>Email
+            <input type="email" id="login-email" required />
+          </label>
+          <label>Password
+            <input type="password" id="login-password" required />
+          </label>
+          <button type="submit" class="btn">Sign In</button>
+          <p class="small">Don't have an account? <a href="#" id="show-signup">Sign up</a></p>
+        </form>
+
+        <!-- SIGNUP -->
+        <form id="signup-form" class="form hidden">
+          <h2>Sign Up</h2>
+          <label>Name
+            <input type="text" id="signup-name" required />
+          </label>
+          <label>Email
+            <input type="email" id="signup-email" required />
+          </label>
+          <label>Password
+            <input type="password" id="signup-password" required />
+          </label>
+          <label>Country
+            <select id="signup-country" required><option>Loading countries...</option></select>
+          </label>
+          <label>Company Name
+            <input type="text" id="signup-company" placeholder="Company name" />
+          </label>
+          <div class="row">
+            <button type="submit" class="btn">Create Account</button>
+            <button id="back-to-login" type="button" class="btn ghost">Back</button>
+          </div>
+        </form>
+      </div>
+
+      <div id="auth-message" class="small muted"></div>
+    </div>
+
+    <div class="mock-note">
+      <strong>Note:</strong> This demo uses mock authentication stored in your browser. Replace login/signup logic with Odoo auth when integrating.
+    </div>
+  </div>
+
+  <script src="scripts.js"></script>
+</body>
+</html>

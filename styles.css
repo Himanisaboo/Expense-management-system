@@ -1,0 +1,200 @@
+:root {
+    --clr1: #ff6b6b;   /* coral red */
+    --clr2: #feca57;   /* warm yellow */
+    --clr3: #1dd1a1;   /* teal green */
+    --clr4: #54a0ff;   /* sky blue */
+    --clr5: #5f27cd;   /* purple */
+    --bg-gradient: linear-gradient(135deg, var(--clr1), var(--clr4));
+    --card-bg: rgba(255, 255, 255, 0.75);
+    --blur: blur(12px);
+    --radius: 16px;
+    --shadow: 0 8px 20px rgba(0,0,0,0.15);
+    --font: "Poppins", "Segoe UI", Roboto, sans-serif;
+  }
+  
+  * { box-sizing: border-box; font-family: var(--font); transition: all 0.3s ease; }
+  
+  body {
+    margin: 0;
+    background: var(--bg-gradient);
+    min-height: 100vh;
+    color: #111;
+    overflow-x: hidden;
+  }
+  
+  /* --------- Topbar with marquee --------- */
+  .topbar {
+    height: 70px;
+    background: var(--card-bg);
+    backdrop-filter: var(--blur);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 24px;
+    border-bottom: 2px solid rgba(255,255,255,0.5);
+    box-shadow: var(--shadow);
+    z-index: 100;
+    position: sticky;
+    top: 0;
+  }
+  
+  .logo {
+    font-weight: 700;
+    font-size: 22px;
+    background: linear-gradient(90deg, var(--clr2), var(--clr5));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: hueRotate 6s infinite linear;
+  }
+  
+  @keyframes hueRotate {
+    from { filter: hue-rotate(0deg); }
+    to { filter: hue-rotate(360deg); }
+  }
+  
+  .marquee {
+    flex: 1;
+    margin: 0 20px;
+    overflow: hidden;
+    white-space: nowrap;
+    color: var(--clr5);
+    font-weight: 600;
+    animation: marquee 12s linear infinite;
+  }
+  @keyframes marquee {
+    0% { transform: translateX(100%); }
+    100% { transform: translateX(-100%); }
+  }
+  
+  .actions { display: flex; gap: 12px; }
+  
+  /* --------- Sidebar --------- */
+  .sidebar {
+    width: 240px;
+    padding: 24px 16px;
+    background: rgba(255,255,255,0.2);
+    backdrop-filter: var(--blur);
+    border-right: 2px solid rgba(255,255,255,0.3);
+    box-shadow: inset -1px 0 0 rgba(0,0,0,0.1);
+  }
+  .sidebar nav ul { list-style: none; padding: 0; margin: 0; }
+  .sidebar nav li { margin-bottom: 12px; }
+  .sidebar nav a {
+    display: block;
+    padding: 12px 16px;
+    border-radius: var(--radius);
+    text-decoration: none;
+    font-weight: 500;
+    color: #fff;
+    background: linear-gradient(90deg, var(--clr3), var(--clr4));
+    box-shadow: var(--shadow);
+  }
+  .sidebar nav a:hover {
+    transform: scale(1.05);
+    background: linear-gradient(90deg, var(--clr2), var(--clr5));
+  }
+  
+  /* --------- Main & Cards --------- */
+  .main { flex: 1; padding: 32px; }
+  
+  .card {
+    background: var(--card-bg);
+    backdrop-filter: var(--blur);
+    padding: 24px;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    margin-bottom: 24px;
+    animation: fadeIn 0.6s ease;
+  }
+  .card:hover { transform: translateY(-6px) scale(1.02); }
+  
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  
+  .card h3 { margin-top: 0; color: var(--clr5); }
+  
+  /* --------- Buttons --------- */
+  .btn {
+    background: linear-gradient(135deg, var(--clr1), var(--clr5));
+    color: #fff;
+    padding: 12px 18px;
+    border: none;
+    border-radius: var(--radius);
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  }
+  .btn:hover { transform: scale(1.07); box-shadow: 0 6px 18px rgba(0,0,0,0.3); }
+  .btn:active { transform: scale(0.95); }
+  
+  .btn.ghost {
+    background: transparent;
+    border: 2px solid var(--clr3);
+    color: var(--clr3);
+  }
+  .btn.ghost:hover { background: var(--clr3); color: #fff; }
+  
+  /* --------- Tables --------- */
+  .table { width: 100%; border-collapse: collapse; font-size: 14px; }
+  .table th, .table td { padding: 12px; border-bottom: 1px solid rgba(255,255,255,0.5); }
+  .table th { background: rgba(255,255,255,0.3); font-weight: 600; }
+  
+  /* --------- Forms --------- */
+  .form label { display: block; margin-bottom: 14px; font-size: 14px; font-weight: 500; }
+  .form input, .form select, .form textarea {
+    width: 100%; padding: 12px;
+    border: 1px solid rgba(255,255,255,0.4);
+    border-radius: var(--radius);
+    font-size: 14px;
+    background: rgba(255,255,255,0.8);
+  }
+  .form input:focus, .form select:focus, .form textarea:focus {
+    outline: none; border-color: var(--clr5);
+    box-shadow: 0 0 0 3px rgba(95,39,205,0.3);
+  }
+  .form textarea { min-height: 90px; }
+  
+  /* --------- Auth Pages --------- */
+  .auth-root {
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    min-height: 100vh; padding: 20px; background: var(--bg-gradient);
+  }
+  .auth-card {
+    width: 420px; background: var(--card-bg); backdrop-filter: var(--blur);
+    padding: 32px; border-radius: var(--radius); box-shadow: var(--shadow);
+    animation: floatIn 0.8s ease;
+  }
+  .auth-card h1 {
+    text-align: center; margin-bottom: 20px;
+    background: linear-gradient(90deg, var(--clr2), var(--clr4));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    font-weight: 800; font-size: 26px;
+  }
+  @keyframes floatIn {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  
+  /* --------- Quick Actions --------- */
+  .grid { display: flex; gap: 20px; flex-wrap: wrap; }
+  .quick {
+    flex: 1; min-width: 150px; padding: 20px;
+    border-radius: var(--radius);
+    text-decoration: none; color: white;
+    font-weight: 600; text-align: center;
+    background: linear-gradient(135deg, var(--clr3), var(--clr5));
+    box-shadow: var(--shadow);
+  }
+  .quick:hover { transform: translateY(-6px) scale(1.05); }
+  
+  /* --------- Extra Glow --------- */
+  .btn.glow {
+    box-shadow: 0 0 12px var(--clr2), 0 0 24px var(--clr4);
+  }
+  .btn.glow:hover {
+    box-shadow: 0 0 16px var(--clr1), 0 0 32px var(--clr5);
+  }
+  
